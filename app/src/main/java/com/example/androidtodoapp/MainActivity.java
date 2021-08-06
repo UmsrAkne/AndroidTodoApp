@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.androidtodoapp.fragments.MainBottomFragment;
 import com.example.androidtodoapp.fragments.MainUpFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         MainUpFragment fragment = new MainUpFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.container,fragment);
+        transaction.commit();
+
+        MainBottomFragment bottomFragment = new MainBottomFragment();
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.container,bottomFragment);
         transaction.commit();
     }
 }

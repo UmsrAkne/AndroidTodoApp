@@ -6,13 +6,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="todo templates"
-        android:textSize="22dp"
+        android:text="todo lists"
+        android:textSize="20dp"
         />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mainUpListView"/>
+        android:id="@+id/mainBottomListView"/>
 
 </LinearLayout>
