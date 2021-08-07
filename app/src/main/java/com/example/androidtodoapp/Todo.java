@@ -1,6 +1,7 @@
 package com.example.androidtodoapp;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -9,13 +10,18 @@ import java.util.Date;
 public final class Todo {
 
     @PrimaryKey
-    private int id;
+    public int id;
 
     private String title = "";
     private String comment = "";
+
+    @Ignore
     private Boolean completed;
 
+    @Ignore
     private Date creationDateTime;
+
+    @Ignore
     private Date completeDateTime;
 
     public Todo(){
