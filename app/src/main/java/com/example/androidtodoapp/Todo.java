@@ -1,10 +1,16 @@
 package com.example.androidtodoapp;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity(tableName = "todos")
 public final class Todo {
 
+    @PrimaryKey
     private int id;
+
     private String title = "";
     private String comment = "";
     private Boolean completed;
