@@ -15,8 +15,7 @@ public final class Todo {
     private String title = "";
     private String comment = "";
 
-    @Ignore
-    private Boolean completed;
+    private boolean completed;
 
     @Ignore
     private Date creationDateTime;
@@ -74,7 +73,11 @@ public final class Todo {
         return creationDateTime;
     }
 
-    public boolean isCompleted(){
+    public boolean getCompleted(){
         return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
