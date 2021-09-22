@@ -1,15 +1,26 @@
 package com.example.androidtodoapp;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity(tableName = "todos")
 public final class Todo {
 
-    private int id;
+    @PrimaryKey
+    public int id;
+
     private String title = "";
     private String comment = "";
-    private Boolean completed;
 
+    private boolean completed;
+
+    @Ignore
     private Date creationDateTime;
+
+    @Ignore
     private Date completeDateTime;
 
     public Todo(){
@@ -62,7 +73,11 @@ public final class Todo {
         return creationDateTime;
     }
 
-    public boolean isCompleted(){
+    public boolean getCompleted(){
         return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
