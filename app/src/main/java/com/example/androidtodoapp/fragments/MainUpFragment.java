@@ -3,6 +3,7 @@ package com.example.androidtodoapp.fragments;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,30 +43,37 @@ public class MainUpFragment extends Fragment {
         listViewAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1);
         listView.setAdapter(listViewAdapter);
 
-        new DataStoreAsyncTask( AppDatabaseSingleton.getInstance(getContext()),(Activity)getContext() );
+        new GetTodosAsync( AppDatabaseSingleton.getInstance(getContext()),(Activity)getContext() );
+        new InsertTodoAsync(AppDatabaseSingleton.getInstance(getContext()),this);
     }
 
-    private static class DataStoreAsyncTask extends AsyncTask<Void, Void, Integer> {
+    private static class InsertTodoAsync extends AsyncTask<Void,Void,Integer>{
+        private WeakReference<Fragment> weakReferenceFragment;
+        private AppDatabase db;
+
+        public InsertTodoAsync(AppDatabase db, Fragment fragment){
+            this.db = db;
+            this.weakReferenceFragment = new WeakReference<>(fragment);
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return null;
+        }
+    }
+
+    private static class GetTodosAsync extends AsyncTask<Void, Void, Integer> {
         private WeakReference<Activity> weakActivity;
         private AppDatabase db;
-        private StringBuilder sb;
 
-        public DataStoreAsyncTask(AppDatabase db, Activity activity) {
+        public GetTodosAsync(AppDatabase db, Activity activity) {
             this.db = db;
             weakActivity = new WeakReference<>(activity);
         }
 
         @Override
         protected Integer doInBackground(Void... params) {
-            TodoDAO accessTimeDao = db.tododAO();
-            accessTimeDao.insert(new Todo());
-
-            sb = new StringBuilder();
-            List<Todo> atList = accessTimeDao.getAll();
-            for (Todo at: atList) {
-                sb.append(at.getId()).append("\n");
-            }
-
+            List<Todo> todoList = db.tododAO().getAll();
             return 0;
         }
 
